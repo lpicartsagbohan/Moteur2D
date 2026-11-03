@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemGroup Label="ProjectConfigurations">
+        <ProjectConfiguration Include="Debug|Win32">
+            <Configuration>Debug</Configuration>
+            <Platform>Win32</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Release|Win32">
+            <Configuration>Release</Configuration>
+            <Platform>Win32</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Debug|x64">
+            <Configuration>Debug</Configuration>
+            <Platform>x64</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Release|x64">
+            <Configuration>Release</Configuration>
+            <Platform>x64</Platform>
+        </ProjectConfiguration>
+    </ItemGroup>
+    <PropertyGroup Label="Globals">
+        <ProjectGuid>{6EC63996-0A9D-0510-074D-3D45710171D7}</ProjectGuid>
+        <RootNamespace>MonProjet1</RootNamespace>
+        <Keyword>Win32Proj</Keyword>
+    </PropertyGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+    <PropertyGroup Label="Configuration">
+        <ConfigurationType>Application</ConfigurationType>
+        <UseDebugLibraries Condition="'$(Configuration)'=='Debug'">true</UseDebugLibraries>
+        <UseDebugLibraries Condition="'$(Configuration)'=='Release'">false</UseDebugLibraries>
+        <PlatformToolset>v143</PlatformToolset>
+        <WholeProgramOptimization Condition="'$(Configuration)'=='Release'">true</WholeProgramOptimization>
+        <CharacterSet>Unicode</CharacterSet>
+    </PropertyGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+    <ImportGroup Label="ExtensionSettings" />
+    <ImportGroup Label="PropertySheets">
+        <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    </ImportGroup>
+    <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+        <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+        <IntDir>$(ProjectDir)$(Platform)\$(Configuration)\intermediate\</IntDir>
+    </PropertyGroup>
+    <PropertyGroup Label="Vcpkg">
+        <VcpkgEnabled>false</VcpkgEnabled>
+        <VcpkgEnableManifest>false</VcpkgEnableManifest>
+        <VcpkgManifestRoot>$(SolutionDir)..\config\Game</VcpkgManifestRoot>
+        <VcpkgInstalledDir>$(SolutionDir)\vcpkg_installed\$(VcpkgTriplet)</VcpkgInstalledDir>
+    </PropertyGroup>
+    <ItemDefinitionGroup>
+        <ClCompile>
+            <WarningLevel>Level3</WarningLevel>
+            <FunctionLevelLinking Condition="'$(Configuration)'=='Release'">true</FunctionLevelLinking>
+            <IntrinsicFunctions Condition="'$(Configuration)'=='Release'">true</IntrinsicFunctions>
+            <SDLCheck>true</SDLCheck>
+            <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <ConformanceMode>true</ConformanceMode>
+            <LanguageStandard>stdcpp20</LanguageStandard>
+            <RuntimeLibrary Condition="'$(Configuration)'=='Debug'">MultiThreadedDebug</RuntimeLibrary>
+            <RuntimeLibrary Condition="'$(Configuration)'=='Release'">MultiThreaded</RuntimeLibrary>
+            <PrecompiledHeader>NotUsing</PrecompiledHeader>
+            <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+            <AdditionalIncludeDirectories Condition="'$(Configuration)'=='Debug'">$(SolutionDir)..\src;$(SolutionDir)..\src\Game;../../lib/SDL2/include;../../lib/SDL2_image/include;../../lib/SDL2_ttf/include;../../lib/SDL2_mixer/include;$(SolutionDir)..\src\Engine2D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+            <AdditionalIncludeDirectories Condition="'$(Configuration)'=='Release'">$(SolutionDir)..\src;$(SolutionDir)..\src\Game;../../lib/SDL2/include;../../lib/SDL2_image/include;../../lib/SDL2_ttf/include;../../lib/SDL2_mixer/include;$(SolutionDir)..\src\Engine2D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+        </ClCompile>
+        <Link>
+            <SubSystem>Console</SubSystem>
+            <EnableCOMDATFolding Condition="'$(Configuration)'=='Release'">true</EnableCOMDATFolding>
+            <OptimizeReferences Condition="'$(Configuration)'=='Release'">true</OptimizeReferences>
+            <GenerateDebugInformation>true</GenerateDebugInformation>
+            <AdditionalLibraryDirectories Condition="'$(Configuration)'=='Debug'">../../lib/SDL2/lib/x64;../../lib/SDL2_image/lib/x64;../../lib/SDL2_ttf/lib/x64;../../lib/SDL2_mixer/lib/x64;$(SolutionDir)Engine2D\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+            <AdditionalLibraryDirectories Condition="'$(Configuration)'=='Release'">../../lib/SDL2/lib/x64;../../lib/SDL2_image/lib/x64;../../lib/SDL2_ttf/lib/x64;../../lib/SDL2_mixer/lib/x64;$(SolutionDir)Engine2D\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+            <AdditionalDependencies Condition="'$(Configuration)'=='Debug'">SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;Engine2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+            <AdditionalDependencies Condition="'$(Configuration)'=='Release'">SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;Engine2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+        </Link>
+        <FxCompile>
+            <ObjectFileOutput>$(SolutionDir)../res/Shaders/%(Filename).cso</ObjectFileOutput>
+            <ShaderModel>6.0</ShaderModel>
+        </FxCompile>
+    </ItemDefinitionGroup>
+    <ItemGroup>
+        <ClInclude Include="$(SolutionDir)..\src\Game\AiMovement.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Game\BallLogic.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Game\EndScene.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Game\GoalComponent.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Game\LevelScene.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Game\main.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Game\PlayerMovement.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Game\QuitButtonComponent.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Game\RestartButtonComponent.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Game\ScoreManager.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Game\StartMultiButtonComponent.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Game\StartScene.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Game\StartSingleButtonComponent.h" />
+    </ItemGroup>
+    <ItemGroup>
+        <ClCompile Include="$(SolutionDir)..\src\Game\AiMovement.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Game\BallLogic.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Game\EndScene.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Game\GoalComponent.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Game\LevelScene.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Game\main.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Game\PlayerMovement.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Game\QuitButtonComponent.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Game\RestartButtonComponent.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Game\ScoreManager.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Game\StartMultiButtonComponent.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Game\StartScene.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Game\StartSingleButtonComponent.cpp" />
+    </ItemGroup>
+    <ItemGroup>
+    </ItemGroup>
+    <ItemGroup>
+    </ItemGroup>
+    <ItemGroup>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="$(SolutionDir)\Engine2D\Engine2D.vcxproj">
+            <Project>{1FA65EC7-1C35-52E7-038C-4E5E06D2452A}</Project>
+        </ProjectReference>
+    </ItemGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+    <ImportGroup Label="ExtensionTargets" />
+</Project>

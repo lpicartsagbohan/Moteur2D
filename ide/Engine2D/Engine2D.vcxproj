@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemGroup Label="ProjectConfigurations">
+        <ProjectConfiguration Include="Debug|Win32">
+            <Configuration>Debug</Configuration>
+            <Platform>Win32</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Release|Win32">
+            <Configuration>Release</Configuration>
+            <Platform>Win32</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Debug|x64">
+            <Configuration>Debug</Configuration>
+            <Platform>x64</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Release|x64">
+            <Configuration>Release</Configuration>
+            <Platform>x64</Platform>
+        </ProjectConfiguration>
+    </ItemGroup>
+    <PropertyGroup Label="Globals">
+        <ProjectGuid>{1FA65EC7-1C35-52E7-038C-4E5E06D2452A}</ProjectGuid>
+        <RootNamespace>MonProjet1</RootNamespace>
+        <Keyword>Win32Proj</Keyword>
+    </PropertyGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+    <PropertyGroup Label="Configuration">
+        <ConfigurationType>StaticLibrary</ConfigurationType>
+        <UseDebugLibraries Condition="'$(Configuration)'=='Debug'">true</UseDebugLibraries>
+        <UseDebugLibraries Condition="'$(Configuration)'=='Release'">false</UseDebugLibraries>
+        <PlatformToolset>v143</PlatformToolset>
+        <WholeProgramOptimization Condition="'$(Configuration)'=='Release'">true</WholeProgramOptimization>
+        <CharacterSet>Unicode</CharacterSet>
+    </PropertyGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+    <ImportGroup Label="ExtensionSettings" />
+    <ImportGroup Label="PropertySheets">
+        <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    </ImportGroup>
+    <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+        <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+        <IntDir>$(ProjectDir)$(Platform)\$(Configuration)\intermediate\</IntDir>
+    </PropertyGroup>
+    <PropertyGroup Label="Vcpkg">
+        <VcpkgEnabled>false</VcpkgEnabled>
+        <VcpkgEnableManifest>false</VcpkgEnableManifest>
+        <VcpkgManifestRoot>$(SolutionDir)..\config\Engine2D</VcpkgManifestRoot>
+        <VcpkgInstalledDir>$(SolutionDir)\vcpkg_installed\$(VcpkgTriplet)</VcpkgInstalledDir>
+    </PropertyGroup>
+    <ItemDefinitionGroup>
+        <ClCompile>
+            <WarningLevel>Level3</WarningLevel>
+            <FunctionLevelLinking Condition="'$(Configuration)'=='Release'">true</FunctionLevelLinking>
+            <IntrinsicFunctions Condition="'$(Configuration)'=='Release'">true</IntrinsicFunctions>
+            <SDLCheck>true</SDLCheck>
+            <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <ConformanceMode>true</ConformanceMode>
+            <LanguageStandard>stdcpp20</LanguageStandard>
+            <RuntimeLibrary Condition="'$(Configuration)'=='Debug'">MultiThreadedDebug</RuntimeLibrary>
+            <RuntimeLibrary Condition="'$(Configuration)'=='Release'">MultiThreaded</RuntimeLibrary>
+            <PrecompiledHeader>NotUsing</PrecompiledHeader>
+            <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+            <AdditionalIncludeDirectories Condition="'$(Configuration)'=='Debug'">$(SolutionDir)..\src;$(SolutionDir)..\src\Engine2D;../../lib/SDL2/include;../../lib/SDL2_image/include;../../lib/SDL2_ttf/include;../../lib/SDL2_mixer/include;$(SolutionDir)..\src\Lib2D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+            <AdditionalIncludeDirectories Condition="'$(Configuration)'=='Release'">$(SolutionDir)..\src;$(SolutionDir)..\src\Engine2D;../../lib/SDL2/include;../../lib/SDL2_image/include;../../lib/SDL2_ttf/include;../../lib/SDL2_mixer/include;$(SolutionDir)..\src\Lib2D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+        </ClCompile>
+        <Link>
+            <SubSystem>Console</SubSystem>
+            <EnableCOMDATFolding Condition="'$(Configuration)'=='Release'">true</EnableCOMDATFolding>
+            <OptimizeReferences Condition="'$(Configuration)'=='Release'">true</OptimizeReferences>
+            <GenerateDebugInformation>true</GenerateDebugInformation>
+            <AdditionalLibraryDirectories Condition="'$(Configuration)'=='Debug'">../../lib/SDL2/lib/x64;../../lib/SDL2_image/lib/x64;../../lib/SDL2_ttf/lib/x64;../../lib/SDL2_mixer/lib/x64;$(SolutionDir)Lib2D\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+            <AdditionalLibraryDirectories Condition="'$(Configuration)'=='Release'">../../lib/SDL2/lib/x64;../../lib/SDL2_image/lib/x64;../../lib/SDL2_ttf/lib/x64;../../lib/SDL2_mixer/lib/x64;$(SolutionDir)Lib2D\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+            <AdditionalDependencies Condition="'$(Configuration)'=='Debug'">SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;Lib2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+            <AdditionalDependencies Condition="'$(Configuration)'=='Release'">SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;Lib2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+        </Link>
+        <FxCompile>
+            <ObjectFileOutput>$(SolutionDir)../res/Shaders/%(Filename).cso</ObjectFileOutput>
+            <ShaderModel>6.0</ShaderModel>
+        </FxCompile>
+    </ItemDefinitionGroup>
+    <ItemGroup>
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\AllComponent.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\Application.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\AScene.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\AudioSource.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\BoxCollider.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\ButtonComponent.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\CircleCollider.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\Clickable.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\Collidable.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\Collider.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\CollisionSystem.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\Component.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\Entity.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\Hoverable.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\Pressable.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\Rigidbody2D.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\SceneManager.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\SpriteRenderer.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\TagComponent.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\TextComponent.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\Timer.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\TransformComponent.h" />
+        <ClInclude Include="$(SolutionDir)..\src\Engine2D\Updatable.h" />
+    </ItemGroup>
+    <ItemGroup>
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\Application.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\AScene.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\AudioSource.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\BoxCollider.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\ButtonComponent.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\CircleCollider.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\Clickable.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\Collidable.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\Collider.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\CollisionSystem.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\Component.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\Entity.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\Hoverable.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\Pressable.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\Rigidbody2D.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\SceneManager.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\SpriteRenderer.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\TagComponent.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\TextComponent.cpp" />
+        <ClCompile Include="$(SolutionDir)..\src\Engine2D\Timer.cpp" />
+    </ItemGroup>
+    <ItemGroup>
+    </ItemGroup>
+    <ItemGroup>
+    </ItemGroup>
+    <ItemGroup>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="$(SolutionDir)\Lib2D\Lib2D.vcxproj">
+            <Project>{1FC702A3-5607-7EE0-1676-67C2006652D1}</Project>
+        </ProjectReference>
+    </ItemGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+    <ImportGroup Label="ExtensionTargets" />
+</Project>
